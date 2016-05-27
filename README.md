@@ -94,6 +94,53 @@ defaults to `../fonts/bootstrap`, so we would have to copy those
 fonts to our output directory, either in the appropriate location 
 relative to `compiled.css`, or we could change the variable...
 
+# **copying**
+
+Now we will change our `brocfile.js` to do some file copying to
+get those font files over and to copy our index.html to the output
+directory.  Broccoli has a 'funnel' plugin for just this purpose,
+and we will need to merge those files using the 'merge-trees' plugin,
+so let's install them:
+
+    npm install --save-dev broccoli-funnel broccoli-merge-trees
+
+First, let's change `brocfile.js` to copy `index.html` to the output
+directory.  We need to require those plugins:
+
+    var funnel = require('broccoli-funnel');
+    var mergeTrees = require('broccoli-merge-trees');
+
+For a detailed desription of how to use 'funnel', check 
+[the funnel docs](https://github.com/broccolijs/broccoli-funnel).
+First, move the `index.html` file into the `src` directory.  You
+can use other directories, but not the directory where `brocfile.js`
+is located because broccoli creates a `tmp` directory there
+that would also be included in searching for files.
+
+Now at the bottom of `brocfile.js` add these lines.  It's ok to
+leave the sass code there, this `module.exports` will override
+the sass one:
+
+    var index_html = funnel('src', {
+        include: ['index.html']
+    });
+
+    module.exports = index_html;
+
+Now if you did `broccoli build dist` it would move your `index.html` 
+file to the dist directory.  But we can do better.  Run `broccoli serve`
+and it will serve it's output on port 4200.  No more need for `lite-server`
+unless you need the auto-reload.  It will be watching for changes
+to its inputs and auto-rebuilding when it detects a change is made.
+
+The last thing we need to do is change the link to the stylesheet
+in 'index.html' since we moved it into the root of the output, what
+will be the 'dist' folder if you run `broccoli build dist`.  You can
+specify an output child path with funnel of course, but we want
+`index.html` in the root.
+
+    <link rel="stylesheet" href="assets/compiled.css">
+
 # Tag List
 
 To switch, just `git checkout <tag>`
@@ -101,6 +148,8 @@ To switch, just `git checkout <tag>`
 **simple** - just compile one sass file (and an import) into one css file
 
 **bootstrap** - Importing from node module `bootstrap-sass`
+
+**copying** - Copying files, merging output
 
 ### Links
 

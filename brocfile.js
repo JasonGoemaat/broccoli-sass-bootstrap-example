@@ -1,13 +1,15 @@
+// https://www.npmjs.com/package/broccoli
 var compileSass = require('broccoli-sass');
+var funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
 
-// compile 'me.scss' in the 'src' directory into 'compiled.css'
-// in the '<output>/assets' directory
+// https://docs.omniref.com/js/npm/broccoli-sass/0.2.1
 var appCss = compileSass(['src'], 'me.scss', 'assets/compiled.css');
 
-// https://www.npmjs.com/package/broccoli
-// say you have this command:
-//     brocolli build output-dir
-// Then whatever you put in 'module.exports' will get written to the
-// 'output-dir' directory.  In this case, it is 'assets/me.css',
-// the output of compileSass()
-module.exports = appCss;
+// https://github.com/broccolijs/broccoli-funnel#broccoli-funnel
+var index_html = funnel('src', {
+    include: ['index.html']
+});
+
+// https://github.com/broccolijs/broccoli-merge-trees
+module.exports = mergeTrees([appCss, index_html]);
