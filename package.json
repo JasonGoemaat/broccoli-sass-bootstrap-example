@@ -1,0 +1,21 @@
+{
+  "name": "broccoli-sass-bootstrap-example",
+  "version": "1.0.0",
+  "description": "Example of using broccoli to compile a custom CSS with bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "broccoli",
+    "sass",
+    "bootstrap"
+  ],
+  "author": "Jason Goemaat",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "broccoli": "^0.16.9",
+    "broccoli-sass": "^0.7.0"
+  }
+}

@@ -1,0 +1,8 @@
+# don't want node_modules in our repository
+node_modules
+
+# don't want the output directory
+dist
+
+# and ignore the broccoli temp directory
+tmp
