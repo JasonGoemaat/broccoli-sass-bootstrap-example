@@ -1,9 +1,8 @@
-@import 'my-variables.scss';
+// import variables _before_ bootstrap proper:
+@import 'node_modules/bootswatch/darkly/_variables.scss';
 
-body {
-    background-color: $body-bg;
-}
+// now bootstrap itself which will use those variables:
+@import 'node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 
-h1 {
-    color: $text-color;    
-}
+// now overrides for anything bootstrap did that we want to changes:
+@import 'node_modules/bootswatch/darkly/_bootswatch.scss';
