@@ -141,6 +141,31 @@ specify an output child path with funnel of course, but we want
 
     <link rel="stylesheet" href="assets/compiled.css">
 
+# **bootstrap_assets**
+
+## Copy bootstrap fonts
+
+The bootstrap fonts are in `node_modules/bootstrap-sass/assets/fonts/bootstrap`.
+What I'm going to do is copy them to `dist/assets/fonts`.  That will just
+be creating a funnel to take those files as input and specifying the
+directory to output them in:
+
+    var bootstrapFonts = funnel('node_modules/bootstrap-sass/assets/fonts/bootstrap', {
+        include: ['*.@(ttf|woff|woff2)'],
+        destDir: 'assets/fonts'
+    });
+
+The glob pattern `'*.@(ttf|woff|woff2)'` matches exactly one of those
+extensions, so it will copy only those three files that my browser 
+requests when they're missing and ignore the other font files (eot, svg).
+
+Not I just need to override the `$icon-font-path` variable bootstrap uses
+to find the fonts in `me.scss` before importing bootstrap:
+
+    $icon-font-path: 'fonts';
+
+
+
 # Tag List
 
 To switch, just `git checkout <tag>`
@@ -150,6 +175,8 @@ To switch, just `git checkout <tag>`
 **bootstrap** - Importing from node module `bootstrap-sass`
 
 **copying** - Copying files, merging output
+
+**bootstrap_assets** - Copy bootstrap fonts, images
 
 ### Links
 
