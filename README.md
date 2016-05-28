@@ -2,6 +2,8 @@ Check out the tag list at the bottom, with the repository in
 varying states.  To see the file in action, `npm install -g lite-server`
 and run `lite-server` to serve up `index.html`.
 
+Check out the `typescript.md` file for an example with typescript.
+
 # **simple** 
 
 ## VERY simple broccoli-sass example
@@ -96,6 +98,8 @@ relative to `compiled.css`, or we could change the variable...
 
 # **copying**
 
+## Copying files, merging output
+
 Now we will change our `brocfile.js` to do some file copying to
 get those font files over and to copy our index.html to the output
 directory.  Broccoli has a 'funnel' plugin for just this purpose,
@@ -164,8 +168,6 @@ to find the fonts in `me.scss` before importing bootstrap:
 
     $icon-font-path: 'fonts';
 
-
-
 # Tag List
 
 To switch, just `git checkout <tag>`
@@ -177,6 +179,8 @@ To switch, just `git checkout <tag>`
 **copying** - Copying files, merging output
 
 **bootstrap_assets** - Copy bootstrap fonts, images
+
+**typescript_simple** - Simple compile of one typescript file
 
 ### Links
 
