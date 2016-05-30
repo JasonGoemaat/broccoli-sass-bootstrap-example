@@ -14,8 +14,21 @@ const packages: any = {
  * Everything underneath this line is managed by the CLI.
  **********************************************************************************************/
 const barrels: string[] = [
+  // Angular specific barrels.
+  '@angular/core',
+  '@angular/common',
+  '@angular/compiler',
+  '@angular/http',
+  '@angular/router',
+  '@angular/platform-browser',
+  '@angular/platform-browser-dynamic',
+
+  // Thirdparty barrels.
+  'rxjs',
+  
   // App specific barrels.
   'app',
+  'app/default',
 //   'app/shared',
 //   'app/shared/my-shared-component',
   /** @cli-barrel */

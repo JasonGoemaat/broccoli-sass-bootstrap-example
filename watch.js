@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+var fs = require("fs");
+var sane = require("sane");
+var broccoli = require("broccoli");
+var Watcher = require("broccoli-sane-watcher");
+var ncp = require("ncp");
+var path = require("path");
+var mkdirp = require("mkdirp");
+var clc = require("cli-color");
+var fsExtra = require("fs-extra");
+
+var args = process.argv.slice(2);
+
+var appRoot = process.cwd();
+var destDir = args[0] || "public";
+
+//console.log('argv:', JSON.stringify(process.argv));
+
+console.log("Reading Brocfile in", appRoot);
+console.log("Writing to", destDir, "\n");
+
+mkdirp(destDir);
+
+var tree = broccoli.loadBrocfile();
+var builder = new broccoli.Builder(tree);
+
+var broccoliWatcher = new Watcher(builder, {verbose: true});
+broccoliWatcher.on("change", function(hash) {
+  fsExtra.emptyDirSync(path.join(appRoot, destDir), (err) => {
+      if (err) console.log('ERROR CLEANING DIRECTORY!', err);
+  })
+  ncp(hash.directory, path.join(appRoot, destDir), { dereference: true }, () => {});
+  console.log(clc.green("Build was successful: " + Math.round(hash.totalTime / 1e6) + "ms"));
+});
+
+broccoliWatcher.on("error", function(error) {
+  console.log(clc.red("An error occurred:"), error.message);
+});
+
+process.addListener("exit", function () {
+  console.log("exiting");
+  builder.cleanup();
+});
+
+process.on("SIGINT", function () {
+  process.exit(1);
+});
+
+process.on("SIGTERM", function () {
+  process.exit(1);
+});

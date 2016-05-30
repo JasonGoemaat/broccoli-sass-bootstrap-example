@@ -2,11 +2,21 @@
     <head>
         <title>Broccoli Sass Bootstrap Example</title>
         <link rel="stylesheet" href="assets/compiled.css">
-        <script src="app/index.js"></script>
     </head>
     <body>
         <h1>Broccoli Sass Bootstrap Example</h1>
         <p>See the <a href="README.md">README.md</a> file.</p>
         <p>Can we use glyphicons? <span class="glyphicon glyphicon-search" aria-hidden="true"></span></p>
+
+        <ft-app>Loading ft-app...</ft-app>
+
+        <!-- dependency libraries -->
+        <script src="vendor/es6-shim.js"></script>
+        <script src="vendor/Reflect.js"></script>
+        <script src="vendor/system.js"></script>
+        <script src="vendor/zone.min.js"></script>
+        <script type="text/javascript">
+            System.import('app/index.js');
+        </script>
     </body>
 </html>
