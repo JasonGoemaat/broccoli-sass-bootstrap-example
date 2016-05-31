@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    "port": 4200,
+    "port": 5001,
     "files": ["./dist/**/*.{html,htm,css,js}"],
     server: {
         baseDir: './dist'

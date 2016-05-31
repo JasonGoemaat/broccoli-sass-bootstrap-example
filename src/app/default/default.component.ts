@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'ft-default',
     templateUrl: 'default.component.html',
-    styleUrls: ['dfeault.component.css']
+    styleUrls: ['default.component.css']
 })
 export class DefaultComponent implements OnInit {
     constructor() { }

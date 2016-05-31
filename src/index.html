@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="assets/compiled.css">
     </head>
     <body>
-        <h1>Broccoli Sass Bootstrap Example</h1>
+        <h1>Broccoli Sass Bootstrap Example 10</h1>
         <p>See the <a href="README.md">README.md</a> file.</p>
         <p>Can we use glyphicons? <span class="glyphicon glyphicon-search" aria-hidden="true"></span></p>
 
@@ -16,7 +16,9 @@
         <script src="vendor/system.js"></script>
         <script src="vendor/zone.min.js"></script>
         <script type="text/javascript">
-            System.import('app/index.js');
+            System.import('system-config.js').then(function () {
+                System.import('main.js');
+            });
         </script>
     </body>
 </html>

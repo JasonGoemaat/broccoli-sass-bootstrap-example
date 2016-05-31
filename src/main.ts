@@ -6,7 +6,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-console.log('module.id:', module.id);
+console.log('module.id *****:', module.id);
 
 bootstrap(AppComponent);
 
